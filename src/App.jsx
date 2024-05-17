@@ -2,10 +2,17 @@ import { CORE_CONCEPTS } from "./data"; //using {} since CORE_CONCEPTS is a name
 import CoreConcept from "./components/CoreConcept";
 import Header from "./components/Header/Header";
 import TabButton from "./components/TabButton";
+import { useState } from "react"; //userState is called React Hook
 
 function App() {
+  const [selectedTopic, setSelectedTopic] = useState("Please click a button"); //userState() returns a array[] that contains 2 elements: stateValue & setStateValue()
+  let dynamicContent = selectedTopic;
   function handleSelect(selectedButton) {
-    console.log(selectedButton);
+    /*React set a schedule to execute the setStateValue function.
+      So, it's strongly recommended to use setStateValue() with the help of a callback function like the arrow function */
+    setSelectedTopic(() => selectedButton);
+    dynamicContent = selectedTopic;
+    console.log(selectedTopic); //the value of state always 1 step slower than the value rendered on web page since React yielded the execution of setStateValue()
   }
   return (
     <div>
@@ -41,7 +48,7 @@ function App() {
             <TabButton onSelect={() => handleSelect("Props")}>Props</TabButton>
             <TabButton onSelect={() => handleSelect("state")}>State</TabButton>
           </menu>
-          Dynamic Content
+          {dynamicContent}
         </section>
       </main>
     </div>
