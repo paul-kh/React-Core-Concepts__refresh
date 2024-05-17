@@ -4,8 +4,8 @@ import Header from "./components/Header/Header";
 import TabButton from "./components/TabButton";
 
 function App() {
-  function handleSelect() {
-    console.log("Onselect Clicked");
+  function handleSelect(selectedButton) {
+    console.log(selectedButton);
   }
   return (
     <div>
@@ -33,11 +33,15 @@ function App() {
         <section id="examples">
           <h2>Examples</h2>
           <menu>
-            <TabButton onSelect={handleSelect}>Components</TabButton>
-            <TabButton onSelect={handleSelect}>JSX</TabButton>
-            <TabButton onSelect={handleSelect}>Props</TabButton>
-            <TabButton onSelect={handleSelect}>State</TabButton>
+            <TabButton onSelect={() => handleSelect("components")}>
+              Components
+            </TabButton>
+            {/*COMMON PATTERN: Passing Custom Arguments to Event Functions with the Help of Arrow Function*/}
+            <TabButton onSelect={() => handleSelect("jsx")}>JSX</TabButton>
+            <TabButton onSelect={() => handleSelect("Props")}>Props</TabButton>
+            <TabButton onSelect={() => handleSelect("state")}>State</TabButton>
           </menu>
+          Dynamic Content
         </section>
       </main>
     </div>
