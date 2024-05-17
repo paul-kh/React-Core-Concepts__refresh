@@ -4,36 +4,39 @@ import Header from "./components/Header/Header";
 import TabButton from "./components/TabButton";
 
 function App() {
+  function handleSelect() {
+    console.log("Onselect Clicked");
+  }
   return (
     <div>
-     <Header />
+      <Header />
       <main>
         <section id="core-concepts">
-        <h2>Core Concepts</h2>
-        <ul>
-          <CoreConcept 
-            title={CORE_CONCEPTS[0].title} 
-            description={CORE_CONCEPTS[0].description} 
-            image={CORE_CONCEPTS[0].image} 
+          <h2>Core Concepts</h2>
+          <ul>
+            <CoreConcept
+              title={CORE_CONCEPTS[0].title}
+              description={CORE_CONCEPTS[0].description}
+              image={CORE_CONCEPTS[0].image}
             />
-          {/* ALTERNATIVE:
+            {/* ALTERNATIVE:
               Since each elelement of the CORE_CONCEPTS array is an "object" tha has 
               sililar properties to props names of the <CoreConcept/> component, we
               can use the spread operator to spread object's properties for the props
               of the component.
           */}
-          <CoreConcept {...CORE_CONCEPTS[1]} />
-          <CoreConcept {...CORE_CONCEPTS[2]} />
-          <CoreConcept {...CORE_CONCEPTS[3]} />
-        </ul>
+            <CoreConcept {...CORE_CONCEPTS[1]} />
+            <CoreConcept {...CORE_CONCEPTS[2]} />
+            <CoreConcept {...CORE_CONCEPTS[3]} />
+          </ul>
         </section>
         <section id="examples">
           <h2>Examples</h2>
           <menu>
-            <TabButton>Components</TabButton>
-            <TabButton>JSX</TabButton>
-            <TabButton>Props</TabButton>
-            <TabButton>State</TabButton>
+            <TabButton onSelect={handleSelect}>Components</TabButton>
+            <TabButton onSelect={handleSelect}>JSX</TabButton>
+            <TabButton onSelect={handleSelect}>Props</TabButton>
+            <TabButton onSelect={handleSelect}>State</TabButton>
           </menu>
         </section>
       </main>
