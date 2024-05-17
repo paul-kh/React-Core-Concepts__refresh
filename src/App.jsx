@@ -1,47 +1,6 @@
-import reactImage from "./assets/react-core-concepts.png";
 import { CORE_CONCEPTS } from "./data"; //using {} since CORE_CONCEPTS is a name-export constant
-
-/* Creating an array to store 3 items that will be displayed randomly
-/  under the "React Essentials" section upon page load
-*/
-const randomDescriptions = ['Core', 'Fundamental', 'Crucial'];
-
-function genRandomInt(arrLength){
-  return Math.floor(Math.random() * (arrLength + 1));
-}
-
-
-//Creating custom component "Header"
-function Header() {
-  const description = randomDescriptions[genRandomInt(2)];
-
-  return (
-    <header>
-    {/*To avoid potential loss of the image during deployment process,
-       we should point image source to an image object that we import
-       rather than the full path*/}
-    <img src={reactImage} alt="Stylized atom" />
-    <h1>React Essentials</h1>
-    <p>
-      {/* Displaying dynamic value in the curly braces */}
-      {description} React concepts you will need for almost any app you are
-      going to build!
-    </p>
-  </header>
-  )
-}
-
-//Using object destructure of the props object
-function CoreConcept({image, title, description}){
-
-  return (
-    <li>
-      <img src={image} alt={title} />
-      <h3>{title}</h3>
-      <p>{description}</p>
-    </li>
-  )
-}
+import CoreConcept from "./components/CoreConcept";
+import Header from "./components/Header";
 
 function App() {
   return (
