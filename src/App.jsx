@@ -1,6 +1,6 @@
 import { CORE_CONCEPTS } from "./data"; //using {} since CORE_CONCEPTS is a name-export constant
 import CoreConcept from "./components/CoreConcept";
-import Header from "./components/Header";
+import Header from "./components/Header/Header";
 
 function App() {
   return (
