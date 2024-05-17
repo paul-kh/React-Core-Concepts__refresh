@@ -1,5 +1,5 @@
 import reactImage from "./assets/react-core-concepts.png";
-import componentImage from "./assets/components.png";
+import { CORE_CONCEPTS } from "./data"; //using {} since CORE_CONCEPTS is a name-export constant
 
 /* Creating an array to store 3 items that will be displayed randomly
 /  under the "React Essentials" section upon page load
@@ -32,6 +32,7 @@ function Header() {
 }
 
 function CoreConcept(props){
+
   return (
     <li>
       <img src={props.image} alt={props.title} />
@@ -49,7 +50,20 @@ function App() {
         <section id="core-concepts">
         <h2>Core Concepts</h2>
         <ul>
-          <CoreConcept title="Components" description="The core UI building block." image={componentImage} />
+          <CoreConcept 
+            title={CORE_CONCEPTS[0].title} 
+            description={CORE_CONCEPTS[0].description} 
+            image={CORE_CONCEPTS[0].image} 
+            />
+          {/* ALTERNATIVE:
+              Since each elelement of the CORE_CONCEPTS array is an "object" tha has 
+              sililar properties to props names of the <CoreConcept/> component, we
+              can use the spread operator to spread object's properties for the props
+              of the component.
+          */}
+          <CoreConcept {...CORE_CONCEPTS[1]} />
+          <CoreConcept {...CORE_CONCEPTS[2]} />
+          <CoreConcept {...CORE_CONCEPTS[3]} />
         </ul>
         </section>
       </main>
