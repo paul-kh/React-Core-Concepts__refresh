@@ -4,6 +4,7 @@ import Header from "./components/Header/Header";
 import TabButton from "./components/TabButton";
 import { useState } from "react"; //userState is called React Hook
 import { EXAMPLES } from "./data.js";
+import { Fragment } from "react"; //Wrapping Component used to avoid unnecessarily duplicated wrapping element such as <div>
 
 function App() {
   const [selectedTopic, setSelectedTopic] = useState(); //userState() returns a array[] that contains 2 elements: stateValue & setStateValue()
@@ -31,7 +32,9 @@ function App() {
       ));
 
   return (
-    <div>
+    <Fragment>
+      {" "}
+      {/*Fragment can be replaced by <> </> in modern React */}
       <Header />
       <main>
         <section id="core-concepts">
@@ -75,7 +78,7 @@ function App() {
           {tabContent}
         </section>
       </main>
-    </div>
+    </Fragment>
   );
 }
 
