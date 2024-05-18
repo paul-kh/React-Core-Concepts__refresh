@@ -36,8 +36,9 @@ export default function Examples() {
         Therfore, the Component Function must use the Rest Props ({...props}) to auto forward any REMAINING PROPERTIES*/}
       <menu>
         {/*COMMON PATTERN: Passing Custom Arguments to Event Functions with the Help of Arrow Function*/}
-        {TAB_MENU.map((tab) => (
+        {TAB_MENU.map((tab, index) => (
           <TabButton
+            key={index}
             isActive={selectedTopic === tab}
             onSelect={() => handleSelect(tab)}
           >
