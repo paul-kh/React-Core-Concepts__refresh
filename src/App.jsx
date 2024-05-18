@@ -6,7 +6,7 @@ import { useState } from "react"; //userState is called React Hook
 import { EXAMPLES } from "./data.js";
 
 function App() {
-  const [selectedTopic, setSelectedTopic] = useState("components"); //userState() returns a array[] that contains 2 elements: stateValue & setStateValue()
+  const [selectedTopic, setSelectedTopic] = useState(); //userState() returns a array[] that contains 2 elements: stateValue & setStateValue()
 
   function handleSelect(selectedTopicButton) {
     /*React set a schedule to execute the setStateValue function.
@@ -14,6 +14,22 @@ function App() {
     setSelectedTopic(() => selectedTopicButton);
     console.log(selectedTopic); //the value of state always 1 step slower than the value rendered on web page since React yielded the execution of setStateValue()
   }
+
+  //Rendering content conditionally
+  let tabContent = "";
+
+  !selectedTopic //Using ternary expression if selectedTop === undefined
+    ? (tabContent = <p>Please select a topic.</p>)
+    : (tabContent = (
+        <div id="tab-content">
+          <h3>{EXAMPLES[selectedTopic].title}</h3>
+          <p>{EXAMPLES[selectedTopic].description}</p>
+          <pre>
+            <code>{EXAMPLES[selectedTopic].code}</code>
+          </pre>
+        </div>
+      ));
+
   return (
     <div>
       <Header />
@@ -48,13 +64,7 @@ function App() {
             <TabButton onSelect={() => handleSelect("props")}>Props</TabButton>
             <TabButton onSelect={() => handleSelect("state")}>State</TabButton>
           </menu>
-          <div id="tab-content">
-            <h3>{EXAMPLES[selectedTopic].title}</h3>
-            <p>{EXAMPLES[selectedTopic].description}</p>
-            <pre>
-              <code>{EXAMPLES[selectedTopic].code}</code>
-            </pre>
-          </div>
+          {tabContent}
         </section>
       </main>
     </div>
