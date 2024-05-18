@@ -80,3 +80,5 @@ function Counter() {
 }`,
   },
 };
+
+export const TAB_MENU = ["Components", "JSX", "Props", "State"];

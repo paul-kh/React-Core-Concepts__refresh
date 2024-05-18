@@ -2,6 +2,7 @@ import { useState } from "react";
 
 import TabButton from "./TabButton";
 import { EXAMPLES } from "../data";
+import { TAB_MENU } from "../data";
 import Section from "./Section";
 
 export default function Examples() {
@@ -10,7 +11,7 @@ export default function Examples() {
   function handleSelect(selectedTopicButton) {
     /*React set a schedule to execute the setStateValue function.
     So, it's strongly recommended to use setStateValue() with the help of a callback function like the arrow function */
-    setSelectedTopic(() => selectedTopicButton);
+    setSelectedTopic(() => selectedTopicButton.toLowerCase());
     console.log(selectedTopic); //the value of state always 1 step slower than the value rendered on web page since React yielded the execution of setStateValue()
   }
 
@@ -35,30 +36,14 @@ export default function Examples() {
         Therfore, the Component Function must use the Rest Props ({...props}) to auto forward any REMAINING PROPERTIES*/}
       <menu>
         {/*COMMON PATTERN: Passing Custom Arguments to Event Functions with the Help of Arrow Function*/}
-        <TabButton
-          isActive={selectedTopic === "components"}
-          onSelect={() => handleSelect("components")}
-        >
-          Components
-        </TabButton>
-        <TabButton
-          isActive={selectedTopic === "jsx"}
-          onSelect={() => handleSelect("jsx")}
-        >
-          JSX
-        </TabButton>
-        <TabButton
-          isActive={selectedTopic === "props"}
-          onSelect={() => handleSelect("props")}
-        >
-          Props
-        </TabButton>
-        <TabButton
-          isActive={selectedTopic === "state"}
-          onSelect={() => handleSelect("state")}
-        >
-          State
-        </TabButton>
+        {TAB_MENU.map((tab) => (
+          <TabButton
+            isActive={selectedTopic === tab}
+            onSelect={() => handleSelect(tab)}
+          >
+            {tab}
+          </TabButton>
+        ))}
       </menu>
       {tabContent}
     </Section>
