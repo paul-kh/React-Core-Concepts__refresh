@@ -3,15 +3,15 @@ import CoreConcept from "./components/CoreConcept";
 import Header from "./components/Header/Header";
 import TabButton from "./components/TabButton";
 import { useState } from "react"; //userState is called React Hook
+import { EXAMPLES } from "./data.js";
 
 function App() {
-  const [selectedTopic, setSelectedTopic] = useState("Please click a button"); //userState() returns a array[] that contains 2 elements: stateValue & setStateValue()
-  let dynamicContent = selectedTopic;
-  function handleSelect(selectedButton) {
+  const [selectedTopic, setSelectedTopic] = useState("components"); //userState() returns a array[] that contains 2 elements: stateValue & setStateValue()
+
+  function handleSelect(selectedTopicButton) {
     /*React set a schedule to execute the setStateValue function.
       So, it's strongly recommended to use setStateValue() with the help of a callback function like the arrow function */
-    setSelectedTopic(() => selectedButton);
-    dynamicContent = selectedTopic;
+    setSelectedTopic(() => selectedTopicButton);
     console.log(selectedTopic); //the value of state always 1 step slower than the value rendered on web page since React yielded the execution of setStateValue()
   }
   return (
@@ -40,15 +40,21 @@ function App() {
         <section id="examples">
           <h2>Examples</h2>
           <menu>
+            {/*COMMON PATTERN: Passing Custom Arguments to Event Functions with the Help of Arrow Function*/}
             <TabButton onSelect={() => handleSelect("components")}>
               Components
             </TabButton>
-            {/*COMMON PATTERN: Passing Custom Arguments to Event Functions with the Help of Arrow Function*/}
             <TabButton onSelect={() => handleSelect("jsx")}>JSX</TabButton>
-            <TabButton onSelect={() => handleSelect("Props")}>Props</TabButton>
+            <TabButton onSelect={() => handleSelect("props")}>Props</TabButton>
             <TabButton onSelect={() => handleSelect("state")}>State</TabButton>
           </menu>
-          {dynamicContent}
+          <div id="tab-content">
+            <h3>{EXAMPLES[selectedTopic].title}</h3>
+            <p>{EXAMPLES[selectedTopic].description}</p>
+            <pre>
+              <code>{EXAMPLES[selectedTopic].code}</code>
+            </pre>
+          </div>
         </section>
       </main>
     </div>
