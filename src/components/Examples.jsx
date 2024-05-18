@@ -2,6 +2,7 @@ import { useState } from "react";
 
 import TabButton from "./TabButton";
 import { EXAMPLES } from "../data";
+import Section from "./Section";
 
 export default function Examples() {
   const [selectedTopic, setSelectedTopic] = useState(); //userState() returns a array[] that contains 2 elements: stateValue & setStateValue()
@@ -29,8 +30,9 @@ export default function Examples() {
       ));
 
   return (
-    <section id="examples">
-      <h2>Examples</h2>
+    <Section title="Examples" id="examples">
+      {/* The <id="examples"> PROPERTY of the Custom Component <Section> can't auto be forwarded to the built-in component in the Component Function.
+        Therfore, the Component Function must use the Rest Props ({...props}) to auto forward any REMAINING PROPERTIES*/}
       <menu>
         {/*COMMON PATTERN: Passing Custom Arguments to Event Functions with the Help of Arrow Function*/}
         <TabButton
@@ -59,6 +61,6 @@ export default function Examples() {
         </TabButton>
       </menu>
       {tabContent}
-    </section>
+    </Section>
   );
 }
