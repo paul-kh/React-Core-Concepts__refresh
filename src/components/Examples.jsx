@@ -8,7 +8,7 @@ import Tabs from "./Tabs";
 
 export default function Examples() {
   const [selectedTopic, setSelectedTopic] = useState(); //userState() returns a array[] that contains 2 elements: stateValue & setStateValue()
-  let selectedBtn;
+
   function handleSelect(selectedTopicButton) {
     /*React set a schedule to execute the setStateValue function.
     So, it's strongly recommended to use setStateValue() with the help of a callback function like the arrow function */
