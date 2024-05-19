@@ -4,10 +4,11 @@ import TabButton from "./TabButton";
 import { EXAMPLES } from "../data";
 import { TAB_MENU } from "../data";
 import Section from "./Section";
+import Tabs from "./Tabs";
 
 export default function Examples() {
   const [selectedTopic, setSelectedTopic] = useState(); //userState() returns a array[] that contains 2 elements: stateValue & setStateValue()
-
+  let selectedBtn;
   function handleSelect(selectedTopicButton) {
     /*React set a schedule to execute the setStateValue function.
     So, it's strongly recommended to use setStateValue() with the help of a callback function like the arrow function */
@@ -32,21 +33,24 @@ export default function Examples() {
 
   return (
     <Section title="Examples" id="examples">
-      {/* The <id="examples"> PROPERTY of the Custom Component <Section> can't auto be forwarded to the built-in component in the Component Function.
-        Therfore, the Component Function must use the Rest Props ({...props}) to auto forward any REMAINING PROPERTIES*/}
-      <menu>
-        {/*COMMON PATTERN: Passing Custom Arguments to Event Functions with the Help of Arrow Function*/}
-        {TAB_MENU.map((tab, index) => (
-          <TabButton
-            key={index}
-            isActive={selectedTopic === tab}
-            onSelect={() => handleSelect(tab)}
-          >
-            {tab}
-          </TabButton>
-        ))}
-      </menu>
-      {tabContent}
+      {/*COMMON PATTERN: Working with multiple JSX slots('tabBttons' as JSX and {tab} as 'children') in 1 component <TabButton>*/}
+      <Tabs
+        tabButtons={
+          <>
+            {TAB_MENU.map((tab, index) => (
+              <TabButton
+                key={index}
+                onSelect={() => handleSelect(tab)}
+                isActive={selectedTopic === tab.toLowerCase()}
+              >
+                {tab}
+              </TabButton>
+            ))}
+          </>
+        }
+      >
+        {tabContent}
+      </Tabs>
     </Section>
   );
 }
