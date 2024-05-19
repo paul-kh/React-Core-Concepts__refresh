@@ -35,6 +35,8 @@ export default function Examples() {
     <Section title="Examples" id="examples">
       {/*COMMON PATTERN: Working with multiple JSX slots('tabBttons' as JSX and {tab} as 'children') in 1 component <TabButton>*/}
       <Tabs
+        //Set component type ("menu", "div",...) dynically to be sent to component's props
+        buttonContainer="menu"
         tabButtons={
           <>
             {TAB_MENU.map((tab, index) => (
