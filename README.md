@@ -17,6 +17,16 @@ React Core Concepts include:
 
 - React developer can always briefly review each core concept of React with its corresponding example listed under the tab menu in the example section.
 
+## Techniques applied
+
+- Passing props down in the component tree
+- Handling events by passing functions as values to props
+- Passing custom arguments to event functions using the arrow function () => {}
+- Dynamically outputting list data using Array.map() method
+- Managing state using useState() hook
+- Deriving and outputting data based on state
+- Dynamically styling CSS
+
 ## Technologies Used
 
 - React
